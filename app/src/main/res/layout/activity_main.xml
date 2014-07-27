@@ -56,48 +56,49 @@
             android:layout_height="fill_parent"
             android:fillViewport="true">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
 
+                <com.faizmalkani.floatingactionbutton.Fab
+                    android:id="@+id/fabbutton_info"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_above="@+id/shadow_up"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/fabbutton_sim_toggle" />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:orientation="vertical"
-                    android:paddingBottom="60dp"
-                    android:paddingTop="60dp">
+                <com.faizmalkani.floatingactionbutton.Fab
+                    android:id="@+id/fabbutton_sim_toggle"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_above="@+id/shadow_up"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp" />
 
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/tap_floating_button_to_enable"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <!-- This FrameLayout fills the empty space to fill the screen -->
-
-                <FrameLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
+                <com.faizmalkani.floatingactionbutton.Fab
+                    android:id="@+id/fabbutton_github"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_above="@+id/shadow_up"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/fabbutton_sim_toggle" />
 
                 <View
+                    android:id="@+id/shadow_up"
                     android:layout_width="match_parent"
                     android:layout_height="8sp"
+                    android:layout_above="@+id/footer"
                     android:background="@drawable/shadow_up" />
 
                 <LinearLayout
                     android:id="@+id/footer"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="135dp"
+                    android:layout_alignParentBottom="true"
                     android:background="@color/material_indigo_dark"
                     android:orientation="vertical">
 
@@ -134,34 +135,10 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </ScrollView>
 
     </LinearLayout>
-
-    <com.faizmalkani.floatingactionbutton.Fab
-        android:id="@+id/fabbutton_info"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="16dp" />
-
-    <com.faizmalkani.floatingactionbutton.Fab
-        android:id="@+id/fabbutton_github"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="130dp"
-        android:layout_marginRight="16dp" />
-
-    <com.faizmalkani.floatingactionbutton.Fab
-        android:id="@+id/fabbutton_sim_toggle"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="230dp"
-        android:layout_marginRight="16dp" />
 
 </FrameLayout>
