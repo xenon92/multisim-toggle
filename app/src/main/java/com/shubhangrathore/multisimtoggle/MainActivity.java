@@ -128,10 +128,12 @@ public class MainActivity extends Activity {
 
     private void setCurrentMultiSimStatusOnTextView() {
 
+        TextView mMultiSimStatusTextView = (TextView) findViewById(R.id.multisim_status);
+
         if (getCurrentMultiSimStatus()) {
-            TextView mMultiSimStatusTextView = (TextView) findViewById(R.id.multisim_status);
-            mMultiSimStatusTextView.setText(R.string.multisim_enabled);
+            mMultiSimStatusTextView.setText(R.string.enabled);
+        } else {
+            mMultiSimStatusTextView.setText(R.string.disabled);
         }
     }
-
 }
