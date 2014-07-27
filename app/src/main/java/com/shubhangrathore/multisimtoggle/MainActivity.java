@@ -169,13 +169,7 @@ public class MainActivity extends Activity {
 
         String mCurrentMultiSimPropValue = Utilities.executeOnShell(sCommandToGetMultiSimProp);
 
-        if (mCurrentMultiSimPropValue.equals(mMultiSimPropValue)) {
-            mMultiSimEnabled = true;
-        } else {
-            mMultiSimEnabled = false;
-        }
-
-        return mMultiSimEnabled;
+        return mCurrentMultiSimPropValue.equals(mMultiSimPropValue);
     }
 
     private void setCurrentMultiSimStatusOnTextView() {
