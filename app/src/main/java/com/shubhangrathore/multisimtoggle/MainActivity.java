@@ -1,18 +1,24 @@
 package com.shubhangrathore.multisimtoggle;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
+
+    public static final String TAG = "MultisimToggle";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setAppVersion();
     }
 
 
@@ -34,5 +40,17 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setAppVersion() {
+        try {
+
+            String mVersionName = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+            TextView mVersionTextView = (TextView) findViewById(R.id.app_version);
+            mVersionTextView.setText(getString(R.string.version) + mVersionName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Unable to set app version");
+        }
     }
 }

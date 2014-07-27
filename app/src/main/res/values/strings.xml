@@ -4,7 +4,7 @@
     <!-- App details -->
 
     <string name="app_name">MultiSIM Toggle</string>
-    <string name="version">Version: </string>
+    <string name="version">v</string>
 
     <string name="app_copyright">
         Copyright © 2014 Shubhang Rathore
