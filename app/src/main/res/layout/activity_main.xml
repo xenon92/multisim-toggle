@@ -34,6 +34,7 @@
                 android:textSize="34sp" />
 
             <TextView
+                android:id="@+id/multisim_status"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="left|top"

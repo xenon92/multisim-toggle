@@ -18,9 +18,13 @@ import com.faizmalkani.floatingactionbutton.Fab;
 public class MainActivity extends Activity {
 
     public static final String TAG = "MultiSimToggle";
-    
+
     public static final String GITHUB_SOURCE_LINK = "https://github.com/xenon92/multisim-toggle";
     public static final String MORE_INFO_BLOG_LINK = "http://blog.shubhangrathore.com/multisim-toggle/index.html";
+
+    private static String sCommandToGetMultiSimProp = "getprop persist.radio.multisim.config";
+
+    private boolean mMultiSimEnabled;
 
     private Fab mFabSimToggle;
     private Fab mFabGithub;
@@ -33,6 +37,7 @@ public class MainActivity extends Activity {
 
         initializeFloatingButtons();
         setAppVersion();
+        setCurrentMultiSimStatusOnTextView();
     }
 
 
@@ -105,4 +110,28 @@ public class MainActivity extends Activity {
                 Uri.parse(link));
         startActivity(browserIntent);
     }
+
+    private boolean getCurrentMultiSimStatus() {
+
+        String mMultiSimPropValue = "dsds";
+
+        String mCurrentMultiSimPropValue = Utilities.executeOnShell(sCommandToGetMultiSimProp);
+
+        if (mCurrentMultiSimPropValue.equals(mMultiSimPropValue)) {
+            mMultiSimEnabled = true;
+        } else {
+            mMultiSimEnabled = false;
+        }
+
+        return mMultiSimEnabled;
+    }
+
+    private void setCurrentMultiSimStatusOnTextView() {
+
+        if (getCurrentMultiSimStatus()) {
+            TextView mMultiSimStatusTextView = (TextView) findViewById(R.id.multisim_status);
+            mMultiSimStatusTextView.setText(R.string.multisim_enabled);
+        }
+    }
+
 }
