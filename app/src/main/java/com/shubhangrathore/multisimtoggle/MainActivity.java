@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
     private void setAppVersion() {
         try {
 
-            String mVersionName = getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+            String mVersionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             TextView mVersionTextView = (TextView) findViewById(R.id.app_version);
             mVersionTextView.setText(getString(R.string.version) + mVersionName);
 
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
         mFabGithub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), getString(R.string.github_source) , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.github_source), Toast.LENGTH_SHORT).show();
                 openLink(GITHUB_SOURCE_LINK);
             }
         });
@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
         mFabInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), getString(R.string.know_more) , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.know_more), Toast.LENGTH_SHORT).show();
                 openLink(MORE_INFO_BLOG_LINK);
             }
         });
