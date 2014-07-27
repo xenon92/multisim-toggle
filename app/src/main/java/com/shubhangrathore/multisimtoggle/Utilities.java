@@ -2,9 +2,11 @@ package com.shubhangrathore.multisimtoggle;
 
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by Shubhang on 27/7/2014.
@@ -57,48 +59,21 @@ public class Utilities {
         }
     }
 
-    protected static String runAndReturnOutputAsRoot(String commandToExecute) {
+    protected static String executeOnShell(String command) {
 
-        byte[] mBuffer = new byte[4096];
-        int mRead;
-        Process mProcess;
-
+        String mOutput = null;
         try {
-
-            mProcess = Runtime.getRuntime().exec("su");
-            DataOutputStream mDataOutputStream = new DataOutputStream(mProcess.getOutputStream());
-
-            mDataOutputStream.writeBytes(commandToExecute);
-            mDataOutputStream.writeBytes("\n");
-            InputStream mInputStream = mProcess.getInputStream();
-
-            String mOutput = new String();
-
-            while (true) {
-                mRead = mInputStream.read(mBuffer);
-                Log.d(TAG, "Value of mRead = " + mRead);
-
-                if (mRead > 0) {
-
-                    mOutput += new String(mBuffer, 0, mRead);
-                    if (mRead < 4069) {
-                        // we have read everything
-                        break;
-                    }
-
-                } else {
-                    return null;
-                }
-            }
-
-            mOutput = mOutput.replaceAll("\\n", "");
-
-            Log.i(TAG, "Utilities: Output from runAndReturnOutputAsRoot = " + mOutput);
-            return mOutput;
-
+            Process mProcess = Runtime.getRuntime().exec(command);
+            mProcess.waitFor();
+            BufferedReader mReader = new BufferedReader(new InputStreamReader(mProcess.getInputStream()));
+            mOutput = mReader.readLine();
+            Log.i(TAG, "Output from executeOnShell = " + mOutput);
         } catch (IOException e) {
-            Log.e(TAG, "Utilities: Unable to execute command and return output as superuser!");
-            return null;
+            Log.e(TAG, "Utilities: Unable to execute command at shell without root - I/O Exception");
+        } catch (InterruptedException e) {
+            Log.e(TAG, "Utilities: Unable to execute command at shell without root - Process interrupted");
         }
+
+        return mOutput;
     }
 }
