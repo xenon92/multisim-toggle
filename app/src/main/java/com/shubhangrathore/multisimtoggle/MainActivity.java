@@ -1,6 +1,9 @@
 package com.shubhangrathore.multisimtoggle;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,6 +26,9 @@ public class MainActivity extends Activity {
     public static final String MORE_INFO_BLOG_LINK = "http://blog.shubhangrathore.com/multisim-toggle/index.html";
 
     private static String sCommandToGetMultiSimProp = "getprop persist.radio.multisim.config";
+    private static String sCommandToSetMultiSimPropActive = "setprop persist.radio.multisim.config dsds";
+    private static String sCommandToSetMultiSimPropDeactive = "setprop persist.radio.multisim.config none";
+    private static String sCommandToReboot = "reboot";
 
     private boolean mMultiSimEnabled;
 
@@ -38,6 +44,7 @@ public class MainActivity extends Activity {
         initializeFloatingButtons();
         setAppVersion();
         setCurrentMultiSimStatusOnTextView();
+        getCurrentMultiSimStatus();
     }
 
 
@@ -78,6 +85,60 @@ public class MainActivity extends Activity {
         mFabSimToggle.setFabColor(getResources().getColor(R.color.material_pink));
         mFabSimToggle.setFabDrawable(getResources().getDrawable(R.drawable.ic_single_sim));
         mFabSimToggle.showFab();
+        mFabSimToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (getCurrentMultiSimStatus()) {
+
+                    Toast.makeText(MainActivity.this, getString(R.string.disabling_multisim), Toast.LENGTH_SHORT).show();
+
+                    new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
+                            .setTitle(getString(R.string.disable_multisim))
+                            .setMessage(getString(R.string.disable_multisim_warning))
+                            .setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int integer) {
+
+                                    boolean successful = Utilities.runAsRoot(sCommandToSetMultiSimPropDeactive);
+
+                                    if (successful) {
+                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_disabled), Toast.LENGTH_SHORT).show();
+                                        rebootDevice();
+                                    } else {
+                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
+                                    }
+                                    setCurrentMultiSimStatusOnTextView();
+                                }
+                            })
+                            .setIcon(R.drawable.ic_single_sim_dark)
+                            .show();
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), getString(R.string.enabling_multisim), Toast.LENGTH_SHORT).show();
+
+                    new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
+                            .setTitle(getString(R.string.enable_multisim))
+                            .setMessage(getString(R.string.enable_multisim_warning))
+                            .setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int integer) {
+
+                                    boolean successful = Utilities.runAsRoot(sCommandToSetMultiSimPropActive);
+
+                                    if (successful) {
+                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_enabled), Toast.LENGTH_SHORT).show();
+                                        rebootDevice();
+                                    } else {
+                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
+                                    }
+                                    setCurrentMultiSimStatusOnTextView();
+                                }
+                            })
+                            .setIcon(R.drawable.ic_single_sim_dark)
+                            .show();
+                }
+            }
+        });
 
         mFabGithub = (Fab) findViewById(R.id.fabbutton_github);
         mFabGithub.setFabColor(getResources().getColor(R.color.material_green));
@@ -135,5 +196,10 @@ public class MainActivity extends Activity {
         } else {
             mMultiSimStatusTextView.setText(R.string.disabled);
         }
+    }
+
+    private void rebootDevice() {
+        Log.i(TAG, "Rebooting device");
+        Utilities.runAsRoot(sCommandToReboot);
     }
 }
