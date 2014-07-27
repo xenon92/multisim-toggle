@@ -31,9 +31,6 @@
     <string name="github_source">Source code on Github</string>
     <string name="know_more">Know more about this app</string>
 
-    <string name="enabling_multisim">Enabling MultiSIM</string>
-    <string name="disabling_multisim">Disabling MultiSIM</string>
-
     <string name="disable_multisim">Disable MultiSIM</string>
     <string name="disable_multisim_warning">
         \nPhone will reboot automatically after MultiSIM is successfully disabled.

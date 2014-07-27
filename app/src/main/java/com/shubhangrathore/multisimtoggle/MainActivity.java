@@ -89,8 +89,6 @@ public class MainActivity extends Activity {
 
                 if (getCurrentMultiSimStatus()) {
 
-                    Toast.makeText(MainActivity.this, getString(R.string.disabling_multisim), Toast.LENGTH_SHORT).show();
-
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.disable_multisim))
                             .setMessage(getString(R.string.disable_multisim_warning))
@@ -113,8 +111,6 @@ public class MainActivity extends Activity {
                             .show();
 
                 } else {
-
-                    Toast.makeText(getApplicationContext(), getString(R.string.enabling_multisim), Toast.LENGTH_SHORT).show();
 
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.enable_multisim))
@@ -200,7 +196,7 @@ public class MainActivity extends Activity {
     private void rebootDevice() {
 
         Log.i(TAG, "Rebooting device...");
-        
+
         mProgressDialog = new ProgressDialog(this, AlertDialog.THEME_HOLO_LIGHT);
         mProgressDialog.setMessage(getString(R.string.rebooting));
         mProgressDialog.show();
