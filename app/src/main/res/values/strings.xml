@@ -34,7 +34,7 @@
     <string name="disable_multisim">Disable MultiSIM</string>
     <string name="disable_multisim_warning">
         \nPhone will reboot automatically after MultiSIM is successfully disabled.
-        \n\nRoot permission required.\n</string>
+        \n\nSuperUser permission required.\n</string>
     <string name="continue_button">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="cancelled">Cancelled</string>
@@ -45,7 +45,7 @@
     <string name="enable_multisim">Enable MultiSIM</string>
         <string name="enable_multisim_warning">
         \nPhone will reboot automatically after MultiSIM is successfully enabled.
-        \n\nRoot permission required.\n</string>
+        \n\nSuperUser permission required.\n</string>
 
     <string name="rebooting">Rebooting...</string>
 
