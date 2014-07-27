@@ -1,19 +1,26 @@
 package com.shubhangrathore.multisimtoggle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.faizmalkani.floatingactionbutton.Fab;
 
 
 public class MainActivity extends Activity {
 
-    public static final String TAG = "MultisimToggle";
+    public static final String TAG = "MultiSimToggle";
+    
+    public static final String GITHUB_SOURCE_LINK = "https://github.com/xenon92/multisim-toggle";
+    public static final String MORE_INFO_BLOG_LINK = "http://blog.shubhangrathore.com/multisim-toggle/index.html";
 
     private Fab mFabSimToggle;
     private Fab mFabGithub;
@@ -71,10 +78,31 @@ public class MainActivity extends Activity {
         mFabGithub.setFabColor(getResources().getColor(R.color.material_green));
         mFabGithub.setFabDrawable(getResources().getDrawable(R.drawable.ic_github));
         mFabGithub.showFab();
+        mFabGithub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), getString(R.string.github_source) , Toast.LENGTH_SHORT).show();
+                openLink(GITHUB_SOURCE_LINK);
+            }
+        });
 
         mFabInfo = (Fab) findViewById(R.id.fabbutton_info);
         mFabInfo.setFabColor(getResources().getColor(R.color.material_amber));
         mFabInfo.setFabDrawable(getResources().getDrawable(R.drawable.ic_info));
         mFabInfo.showFab();
+        mFabInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), getString(R.string.know_more) , Toast.LENGTH_SHORT).show();
+                openLink(MORE_INFO_BLOG_LINK);
+            }
+        });
+    }
+
+    private void openLink(String link) {
+        Log.i(TAG, "Opening link = " + link);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(link));
+        startActivity(browserIntent);
     }
 }

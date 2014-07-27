@@ -20,11 +20,14 @@
     <!-- Misc strings -->
 
     <string name="multisim">MultiSIM</string>
-    <string name="multisim_disabled">Disabled</string>
+    <string name="multisim_disabled">DISABLED</string>
+    <string name="multisim_enabled">ENABLED</string>
 
     <string name="tap_floating_button_to_enable">Tap the floating button to enable multiSIM</string>
     <string name="tap_floating_button_to_disable">Tap the floating button to disable multiSIM</string>
     <string name="warning">WARNING</string>
     <string name="note_details">Enable multiSIM functionality only if your ROM supports it</string>
 
+    <string name="github_source">Source code on Github</string>
+    <string name="know_more">Know more about this app</string>
 </resources>
