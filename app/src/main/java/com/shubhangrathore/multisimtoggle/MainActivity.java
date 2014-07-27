@@ -61,6 +61,10 @@ public class MainActivity extends Activity {
         getCurrentMultiSimStatus();
     }
 
+    /**
+     * Sets the current version of MultiSIM Toggle app
+     * on the GUI in the TextView.
+     */
     private void setAppVersion() {
         try {
 
@@ -73,7 +77,13 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * Initialize Android L style floating buttons.
+     * setOnClickListener to register tap event.
+     */
     private void initializeFloatingButtons() {
+
+        // Android L style floating button to toggle multiSIM state
         Fab mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
         mFabSimToggle.setFabColor(getResources().getColor(R.color.material_pink));
         mFabSimToggle.setFabDrawable(getResources().getDrawable(R.drawable.ic_single_sim));
@@ -84,6 +94,7 @@ public class MainActivity extends Activity {
 
                 if (getCurrentMultiSimStatus()) {
 
+                    // Confirmation dialog to proceed to disable multiSIM
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.disable_multisim))
                             .setMessage(getString(R.string.disable_multisim_warning))
@@ -98,7 +109,7 @@ public class MainActivity extends Activity {
                                     } else {
                                         Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
                                     }
-
+                                    // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
                                 }
                             })
@@ -107,6 +118,7 @@ public class MainActivity extends Activity {
 
                 } else {
 
+                    // Confirmation dialog to proceed to enable multiSIM
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.enable_multisim))
                             .setMessage(getString(R.string.enable_multisim_warning))
@@ -121,6 +133,7 @@ public class MainActivity extends Activity {
                                     } else {
                                         Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
                                     }
+                                    // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
                                 }
                             })
@@ -130,6 +143,7 @@ public class MainActivity extends Activity {
             }
         });
 
+        // Android L style floating button to open link to source code of the app on Github
         Fab mFabGithub = (Fab) findViewById(R.id.fabbutton_github);
         mFabGithub.setFabColor(getResources().getColor(R.color.material_green));
         mFabGithub.setFabDrawable(getResources().getDrawable(R.drawable.ic_github));
@@ -142,6 +156,7 @@ public class MainActivity extends Activity {
             }
         });
 
+        // Android L style floating button to open my blog link for more info on the app
         Fab mFabInfo = (Fab) findViewById(R.id.fabbutton_info);
         mFabInfo.setFabColor(getResources().getColor(R.color.material_amber));
         mFabInfo.setFabDrawable(getResources().getDrawable(R.drawable.ic_info));
@@ -155,6 +170,10 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Opens web link as a browser Intent
+     * @param link web link
+     */
     private void openLink(String link) {
         Log.i(TAG, "Opening link = " + link);
         Intent browserIntent = new Intent(Intent.ACTION_VIEW,
@@ -162,12 +181,19 @@ public class MainActivity extends Activity {
         startActivity(browserIntent);
     }
 
+    /**
+     * Uses helper method from Utilities class to determine the current multiSIM status
+     * and check if multiSIM is current enabled or disabled.
+     * The return value is independent of what the Status Bar of the phone might be showing.
+     * Use case - The user had enabled multiSIM, but hasn't restarted the phone.
+     * The Status Bar will still show a single SIM until the phone is rebooted and it is
+     * re-inflated with other methods required for multiSIM. But this method will return
+     * multiSIM status as "enabled" which is exactly the requirement.
+     * @return current multiSIM status
+     */
     private boolean getCurrentMultiSimStatus() {
-
         String mMultiSimPropValue = "dsds";
-
         String mCurrentMultiSimPropValue = Utilities.executeOnShell(sCommandToGetMultiSimProp);
-
         return mCurrentMultiSimPropValue.equals(mMultiSimPropValue);
     }
 
@@ -182,6 +208,9 @@ public class MainActivity extends Activity {
         }
     }
 
+    /**
+     * Reboots the device. Requires SuperUser permission and helper method from Utilities.
+     */
     private void rebootDevice() {
 
         Log.i(TAG, "Rebooting device...");

@@ -35,6 +35,11 @@ public class Utilities {
 
     public final static String TAG = "MultiSimToggle";
 
+    /**
+     * Executes param commandToExecute with SuperUser permission
+     * @param commandToExecute command to be executed as SuperUser on Shell
+     * @return boolean success of the execution
+     */
     protected static boolean runAsRoot(String commandToExecute) {
 
         try {
@@ -79,6 +84,12 @@ public class Utilities {
         }
     }
 
+    /**
+     * Executes the param command on shell without SuperUser requirement
+     * and returns the output from the Shell.
+     * @param command command that is to be executed on the shell
+     * @return String output from the shell after execution of param command
+     */
     protected static String executeOnShell(String command) {
 
         String mOutput = null;
