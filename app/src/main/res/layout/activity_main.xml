@@ -140,4 +140,28 @@
 
     </LinearLayout>
 
+    <com.faizmalkani.floatingactionbutton.Fab
+        android:id="@+id/fabbutton_info"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="16dp" />
+
+    <com.faizmalkani.floatingactionbutton.Fab
+        android:id="@+id/fabbutton_github"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="130dp"
+        android:layout_marginRight="16dp" />
+
+    <com.faizmalkani.floatingactionbutton.Fab
+        android:id="@+id/fabbutton_sim_toggle"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="230dp"
+        android:layout_marginRight="16dp" />
+
 </FrameLayout>

@@ -8,16 +8,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.faizmalkani.floatingactionbutton.Fab;
+
 
 public class MainActivity extends Activity {
 
     public static final String TAG = "MultisimToggle";
+
+    private Fab mFabSimToggle;
+    private Fab mFabGithub;
+    private Fab mFabInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeFloatingButtons();
         setAppVersion();
     }
 
@@ -52,5 +59,22 @@ public class MainActivity extends Activity {
         } catch (PackageManager.NameNotFoundException e) {
             Log.e(TAG, "Unable to set app version");
         }
+    }
+
+    private void initializeFloatingButtons() {
+        mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
+        mFabSimToggle.setFabColor(getResources().getColor(R.color.material_pink));
+        mFabSimToggle.setFabDrawable(getResources().getDrawable(R.drawable.ic_single_sim));
+        mFabSimToggle.showFab();
+
+        mFabGithub = (Fab) findViewById(R.id.fabbutton_github);
+        mFabGithub.setFabColor(getResources().getColor(R.color.material_green));
+        mFabGithub.setFabDrawable(getResources().getDrawable(R.drawable.ic_github));
+        mFabGithub.showFab();
+
+        mFabInfo = (Fab) findViewById(R.id.fabbutton_info);
+        mFabInfo.setFabColor(getResources().getColor(R.color.material_amber));
+        mFabInfo.setFabDrawable(getResources().getDrawable(R.drawable.ic_info));
+        mFabInfo.showFab();
     }
 }
