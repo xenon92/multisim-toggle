@@ -2,7 +2,7 @@ package com.shubhangrathore.multisimtoggle;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,9 +29,8 @@ public class MainActivity extends Activity {
     private static String sCommandToSetMultiSimPropActive = "setprop persist.radio.multisim.config dsds";
     private static String sCommandToSetMultiSimPropDeactive = "setprop persist.radio.multisim.config none";
     private static String sCommandToReboot = "reboot";
-
+    private ProgressDialog mProgressDialog;
     private boolean mMultiSimEnabled;
-
     private Fab mFabSimToggle;
     private Fab mFabGithub;
     private Fab mFabInfo;
@@ -46,7 +45,6 @@ public class MainActivity extends Activity {
         setCurrentMultiSimStatusOnTextView();
         getCurrentMultiSimStatus();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +105,7 @@ public class MainActivity extends Activity {
                                     } else {
                                         Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
                                     }
+
                                     setCurrentMultiSimStatusOnTextView();
                                 }
                             })
@@ -199,7 +198,34 @@ public class MainActivity extends Activity {
     }
 
     private void rebootDevice() {
-        Log.i(TAG, "Rebooting device");
-        Utilities.runAsRoot(sCommandToReboot);
+
+        Log.i(TAG, "Rebooting device...");
+        
+        mProgressDialog = new ProgressDialog(this, AlertDialog.THEME_HOLO_LIGHT);
+        mProgressDialog.setMessage(getString(R.string.rebooting));
+        mProgressDialog.show();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                // Sleep for 3 seconds
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Sleeping thread interrupted before reboot command execution");
+                }
+
+                // Reboot phone
+                Utilities.runAsRoot(sCommandToReboot);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
     }
 }

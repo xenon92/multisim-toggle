@@ -50,4 +50,6 @@
         \nPhone will reboot automatically after MultiSIM is successfully enabled.
         \n\nRoot permission required.\n</string>
 
+    <string name="rebooting">Rebooting...</string>
+
 </resources>
