@@ -30,10 +30,6 @@ public class MainActivity extends Activity {
     private static String sCommandToSetMultiSimPropDeactive = "setprop persist.radio.multisim.config none";
     private static String sCommandToReboot = "reboot";
     private ProgressDialog mProgressDialog;
-    private boolean mMultiSimEnabled;
-    private Fab mFabSimToggle;
-    private Fab mFabGithub;
-    private Fab mFabInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +75,7 @@ public class MainActivity extends Activity {
     }
 
     private void initializeFloatingButtons() {
-        mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
+        Fab mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
         mFabSimToggle.setFabColor(getResources().getColor(R.color.material_pink));
         mFabSimToggle.setFabDrawable(getResources().getDrawable(R.drawable.ic_single_sim));
         mFabSimToggle.showFab();
@@ -135,7 +131,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        mFabGithub = (Fab) findViewById(R.id.fabbutton_github);
+        Fab mFabGithub = (Fab) findViewById(R.id.fabbutton_github);
         mFabGithub.setFabColor(getResources().getColor(R.color.material_green));
         mFabGithub.setFabDrawable(getResources().getDrawable(R.drawable.ic_github));
         mFabGithub.showFab();
@@ -147,7 +143,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        mFabInfo = (Fab) findViewById(R.id.fabbutton_info);
+        Fab mFabInfo = (Fab) findViewById(R.id.fabbutton_info);
         mFabInfo.setFabColor(getResources().getColor(R.color.material_amber));
         mFabInfo.setFabDrawable(getResources().getDrawable(R.drawable.ic_info));
         mFabInfo.showFab();
