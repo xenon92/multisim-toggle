@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
     private void initializeFloatingButtons() {
 
         // Android L style floating button to toggle multiSIM state
-        Fab mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
+        final Fab mFabSimToggle = (Fab) findViewById(R.id.fabbutton_sim_toggle);
         mFabSimToggle.setFabColor(getResources().getColor(R.color.material_pink));
         mFabSimToggle.setFabDrawable(getResources().getDrawable(R.drawable.ic_single_sim));
         mFabSimToggle.showFab();
@@ -91,11 +91,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
+                mFabSimToggle.hideFab();
+
                 if (getCurrentMultiSimStatus()) {
 
                     // Confirmation dialog to proceed to disable multiSIM
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.disable_multisim))
+                            .setCancelable(false)
                             .setMessage(getString(R.string.disable_multisim_warning))
                             .setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int integer) {
@@ -110,8 +113,15 @@ public class MainActivity extends Activity {
                                         Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute),
                                                 Toast.LENGTH_SHORT).show();
                                     }
+                                    mFabSimToggle.showFab();
                                     // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int integer) {
+                                    mFabSimToggle.showFab();
                                 }
                             })
                             .setIcon(R.drawable.ic_single_sim_dark)
@@ -123,6 +133,7 @@ public class MainActivity extends Activity {
                     new AlertDialog.Builder(MainActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                             .setTitle(getString(R.string.enable_multisim))
                             .setMessage(getString(R.string.enable_multisim_warning))
+                            .setCancelable(false)
                             .setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int integer) {
 
@@ -136,8 +147,15 @@ public class MainActivity extends Activity {
                                         Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute),
                                                 Toast.LENGTH_SHORT).show();
                                     }
+                                    mFabSimToggle.showFab();
                                     // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int integer) {
+                                    mFabSimToggle.showFab();
                                 }
                             })
                             .setIcon(R.drawable.ic_single_sim_dark)
