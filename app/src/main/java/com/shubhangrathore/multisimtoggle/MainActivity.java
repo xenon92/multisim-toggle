@@ -36,7 +36,6 @@ import android.widget.Toast;
 
 import com.faizmalkani.floatingactionbutton.Fab;
 
-
 public class MainActivity extends Activity {
 
     public static final String TAG = "MultiSimToggle";
@@ -104,10 +103,12 @@ public class MainActivity extends Activity {
                                     boolean successful = Utilities.runAsRoot(sCommandToSetMultiSimPropDeactive);
 
                                     if (successful) {
-                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_disabled), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_disabled),
+                                                Toast.LENGTH_SHORT).show();
                                         rebootDevice();
                                     } else {
-                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute),
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                     // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
@@ -128,10 +129,12 @@ public class MainActivity extends Activity {
                                     boolean successful = Utilities.runAsRoot(sCommandToSetMultiSimPropActive);
 
                                     if (successful) {
-                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_enabled), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, getString(R.string.multisim_enabled),
+                                                Toast.LENGTH_SHORT).show();
                                         rebootDevice();
                                     } else {
-                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, getString(R.string.unable_to_execute),
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                     // Refresh current multiSIM status in the TextView in GUI
                                     setCurrentMultiSimStatusOnTextView();
@@ -151,7 +154,8 @@ public class MainActivity extends Activity {
         mFabGithub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), getString(R.string.github_source), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.github_source),
+                        Toast.LENGTH_SHORT).show();
                 openLink(GITHUB_SOURCE_LINK);
             }
         });
@@ -164,7 +168,8 @@ public class MainActivity extends Activity {
         mFabInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), getString(R.string.know_more), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.know_more),
+                        Toast.LENGTH_SHORT).show();
                 openLink(MORE_INFO_BLOG_LINK);
             }
         });
