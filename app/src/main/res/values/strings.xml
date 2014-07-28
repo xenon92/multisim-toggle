@@ -69,5 +69,6 @@
         \n\nSuperUser permission required.\n</string>
 
     <string name="rebooting">Rebooting...</string>
+    <string name="opening_developer_website">Opening developer\'s website</string>
 
 </resources>

@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 
     public static final String TAG = "MultiSimToggle";
 
+    public static final String DEVELOPER_WEBSITE = "http://shubhangrathore.com";
     public static final String GITHUB_SOURCE_LINK = "https://github.com/xenon92/multisim-toggle";
     public static final String MORE_INFO_BLOG_LINK = "http://blog.shubhangrathore.com/multisim-toggle/index.html";
 
@@ -264,5 +265,11 @@ public class MainActivity extends Activity {
                 });
             }
         }).start();
+    }
+
+    public void openDeveloperWebsite(View view) {
+        Toast.makeText(getApplicationContext(), getString(R.string.opening_developer_website),
+                Toast.LENGTH_SHORT).show();
+        openLink(DEVELOPER_WEBSITE);
     }
 }
