@@ -2,17 +2,16 @@ apply plugin: 'android-library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.faizmalkani.floatingactionbutton"
         minSdkVersion 15
         targetSdkVersion 19
     }
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
