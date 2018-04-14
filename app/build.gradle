@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':floatingActionButton')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':floatingActionButton')
 }
