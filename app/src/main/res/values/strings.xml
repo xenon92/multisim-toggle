@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ MultiSIM Toggle
   ~
   ~ Android app to enable or disable multiSIM functionality on multiSIM supporting ROMs
@@ -24,10 +23,10 @@
 
     <!-- App details -->
 
-    <string name="app_name">MultiSIM Toggle</string>
-    <string name="version">v</string>
+    <string name="app_name" translatable="false">MultiSIM Toggle</string>
+    <string name="version" translatable="false">v</string>
 
-    <string name="app_copyright">
+    <string name="app_copyright" translatable="false">
         Copyright © 2014 Shubhang Rathore
         \nGoogle+: http://google.com/+ShubhangRathore
         \nGithub: https://github.com/xenon92
@@ -40,7 +39,6 @@
 
     <!-- Misc strings -->
 
-    <string name="multisim">MultiSIM</string>
     <string name="disabled">DISABLED</string>
     <string name="enabled">ENABLED</string>
 
@@ -64,7 +62,7 @@
     <string name="unable_to_execute">Unsuccessful</string>
 
     <string name="enable_multisim">Enable MultiSIM</string>
-        <string name="enable_multisim_warning">
+    <string name="enable_multisim_warning">
         \nPhone will reboot automatically after MultiSIM is successfully enabled.
         \n\nSuperUser permission required.\n</string>
 
