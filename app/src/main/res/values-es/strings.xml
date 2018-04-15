@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ MultiSIM Toggle
+  ~
+  ~ Android app to enable or disable multiSIM functionality on multiSIM supporting ROMs
+  ~
+  ~ Copyright (c) 2018 Jhuan Reategui Solis
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!-- App details -->
+
+    <!-- Menu -->
+
+    <string name="action_exit">Salir</string>
+
+
+    <!-- Misc strings -->
+
+    <string name="disabled">Desactivado</string>
+    <string name="enabled">Activado</string>
+
+    <string name="tap_floating_button_to_enable">Toque el botón flotante para habilitar multiSIM</string>
+    <string name="tap_floating_button_to_disable">Toque el botón flotante para deshabilitar multiSIM</string>
+    <string name="warning">ADVERTENCIA</string>
+    <string name="note_details">Active la multisim solo si su ROM lo admite</string>
+
+    <string name="github_source">Codigo fuente en Github</string>
+    <string name="know_more">Saber mas sobre la aplicación</string>
+
+    <string name="disable_multisim">Disable MultiSIM</string>
+    <string name="disable_multisim_warning">
+        \nEl teléfono se reiniciará automáticamente después de que MultiSIM se desactive correctamente.
+        \n\nSe requieren permisos Root.\n</string>
+    <string name="continue_button">Continuar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cancelled">Cancelado</string>
+    <string name="multisim_disabled">MultiSIM Desactivado</string>
+    <string name="multisim_enabled">MultiSIM Activado</string>
+    <string name="unable_to_execute">Error...</string>
+
+    <string name="enable_multisim">Activar MultiSIM</string>
+    <string name="enable_multisim_warning">
+        \nEl teléfono se reiniciará automáticamente después de que MultiSIM se habilite correctamente.
+        \n\nSe requieren permisos Root.\n</string>
+
+    <string name="rebooting">Reiniciando...</string>
+    <string name="opening_developer_website">Abrir el sitio web del desarrollador</string>
+
+</resources>
